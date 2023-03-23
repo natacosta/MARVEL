@@ -1,7 +1,11 @@
-export default function Detalhes (){
+import Detalhamento from '../Components/Detalhamento'
+
+export default function Detalhes() {
 
 
-    return(
-        <>Pagina de Detalhes</>
+    return (
+        <>
+            <Detalhamento></Detalhamento>
+        </>
     )
 }

@@ -1,11 +1,13 @@
-import { CardsContainer, HQS } from '../Style/Cards/Cards';
+import { CardsContainer, HQS, ContainerPaginacao } from '../Style/Cards/Cards';
 import Paginacao from './Paginacao';
 import axios from 'axios'
 import CryptoJS from "crypto-js";
 import { useEffect, useState } from 'react';
-import { useDispatch ,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from 'react-router-dom';
 
-import{obter_Lista_De_HQ} from'../Redux/PaginacaoSlice'
+import { obter_Lista_De_HQ } from '../Redux/PaginacaoSlice'
+import { envia_Dados_De_Detlahes } from '../Redux/DetalhesSlice'
 
 export default function Cards() {
 
@@ -17,7 +19,7 @@ export default function Cards() {
     const [fetch_HQ_Data, setFetch_HQ_Data] = useState([]);
     const [lista_De_HQ, setLista_De_HQ] = useState([]);
 
-    
+
 
     const Url = "http://gateway.marvel.com/v1/public/comics?";
     const chavePrivada = "a6a2f0343d2ca99dff11e3be77ae0f6024938f9f";
@@ -59,7 +61,7 @@ export default function Cards() {
                     imagem: imagens?.path,
                     descricao: fetch_HQ_Data[index].description,
                     preco: precos
-                }   
+                }
                 lista.push(obj)
             }
             setLista_De_HQ(lista)
@@ -73,6 +75,10 @@ export default function Cards() {
 
     return (
         <>
+            <ContainerPaginacao>
+                <Paginacao></Paginacao>
+            </ContainerPaginacao>
+
             <CardsContainer>
 
                 {Todas_As_HQ_Paginadas.map(item => (
@@ -83,15 +89,28 @@ export default function Cards() {
                             alt={`Imagem de ${item.title}`}
                         />
                         <p>{item.titulo}</p>
-                        <button>Carrinho</button>
-                        <button>Detalhes</button>
+
+                        <NavLink to='detalhes'>
+
+
+                            <button
+                                value={item.id}
+                                onClick={(event) => {
+                                    const idClicado = event.target.value;
+                                    const hqClicada = Todas_As_HQ_Paginadas.find(item => item.id === Number(idClicado));
+                                    dispatch(envia_Dados_De_Detlahes(hqClicada))
+                                }}
+                            >
+                                Detalhes
+                            </button>
+
+
+                        </NavLink>
+
+
                     </HQS>
                 ))}
-
-                <Paginacao></Paginacao> 
-
             </CardsContainer>
-
         </>
 
     )

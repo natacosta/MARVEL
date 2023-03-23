@@ -8,7 +8,7 @@ const CardsSlice = createSlice({
     },
     reducers: {
         
-        retornar_Lista_De_HQ_Paginadas(state, action){
+        envia_Lista_De_HQ_Paginadas(state, action){
 
             state.obj = action.payload;
 
@@ -17,5 +17,5 @@ const CardsSlice = createSlice({
     }
 });
 
-export const { retornar_Lista_De_HQ_Paginadas } = CardsSlice.actions;
+export const { envia_Lista_De_HQ_Paginadas } = CardsSlice.actions;
 export default CardsSlice.reducer;
