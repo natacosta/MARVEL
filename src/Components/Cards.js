@@ -1,13 +1,23 @@
-import { CardsContainer, Produto } from '../Style/Cards/Cards';
+import { CardsContainer, HQS } from '../Style/Cards/Cards';
+import Paginacao from './Paginacao';
 import axios from 'axios'
 import CryptoJS from "crypto-js";
 import { useEffect, useState } from 'react';
+import { useDispatch ,useSelector } from "react-redux";
 
+import{obter_Lista_De_HQ} from'../Redux/PaginacaoSlice'
 
 export default function Cards() {
 
-    const [dados, setDados] = useState([]);
-    const [produtos, setProdutos] = useState([]);
+    const dispatch = useDispatch();
+
+    const Todas_As_HQ_Paginadas = useSelector(state => state.cards.obj)
+
+
+    const [fetch_HQ_Data, setFetch_HQ_Data] = useState([]);
+    const [lista_De_HQ, setLista_De_HQ] = useState([]);
+
+    
 
     const Url = "http://gateway.marvel.com/v1/public/comics?";
     const chavePrivada = "a6a2f0343d2ca99dff11e3be77ae0f6024938f9f";
@@ -22,7 +32,7 @@ export default function Cards() {
 
             try {
                 const resposta = await axios.get(`${Url}ts=${timestamp}&apikey=${chavePublica}&hash=${hash}`);
-                setDados(resposta.data.data.results);
+                setFetch_HQ_Data(resposta.data.data.results);
             } catch (error) {
                 console.log("Não foi possível obter a lista de HQs.", error);
             }
@@ -34,45 +44,55 @@ export default function Cards() {
     useEffect(() => {
         function Gerar_Objeto_Produto() {
 
-            const listaDeProdutos = []
+            const lista = []
 
-            for (let index = 0; index < dados.length; index++) {
+            for (let index = 0; index < fetch_HQ_Data.length; index++) {
 
-                const criadores = dados[index].creators.items.map(item => item.name);
-                const imagens = dados[index].images?.[0]
-                const precos = dados[index].prices.map(item => item.price)
+                const criadores = fetch_HQ_Data[index].creators.items.map(item => item.name);
+                const imagens = fetch_HQ_Data[index].images?.[0]
+                const precos = fetch_HQ_Data[index].prices.map(item => item.price)
 
                 const obj = {
-                    id: dados[index].id,
-                    titulo: dados[index].title,
+                    id: fetch_HQ_Data[index].id,
+                    titulo: fetch_HQ_Data[index].title,
                     criador: criadores,
                     imagem: imagens?.path,
-                    descricao: dados[index].description,
+                    descricao: fetch_HQ_Data[index].description,
                     preco: precos
-                }
-                listaDeProdutos.push(obj)
+                }   
+                lista.push(obj)
             }
-            setProdutos(listaDeProdutos)
-
+            setLista_De_HQ(lista)
+            dispatch(obter_Lista_De_HQ(lista))
         }
         Gerar_Objeto_Produto();
-    }, [dados]);
+
+    }, [fetch_HQ_Data]);
+
 
 
     return (
         <>
-
             <CardsContainer>
-                <Produto>
 
-                    {produtos.map(item => (
+                {Todas_As_HQ_Paginadas.map(item => (
+                    <HQS>
                         <img
-                            src={item.imagem ?  item.imagem + '/portrait_uncanny.jpg' : 'https://via.placeholder.com/300x450.png?text=Imagem+de+espa%C3%A7o+reservado'}
+                            key={item.id}
+                            src={item.imagem ? item.imagem + '/portrait_uncanny.jpg' : 'https://via.placeholder.com/300x450.png?text=Imagem+de+espa%C3%A7o+reservado'}
+                            alt={`Imagem de ${item.title}`}
                         />
-                    ))}
-                </Produto>
+                        <p>{item.titulo}</p>
+                        <button>Carrinho</button>
+                        <button>Detalhes</button>
+                    </HQS>
+                ))}
+
+                <Paginacao></Paginacao> 
+
             </CardsContainer>
 
         </>
+
     )
 }

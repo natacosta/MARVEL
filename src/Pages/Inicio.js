@@ -1,12 +1,11 @@
 import Cards from "../Components/Cards"
 
-export default function Inicial (){
+export default function Inicial() {
 
 
-    return(
+    return (
         <>
-        Pagina de inicio
-        <Cards></Cards>
+            <Cards></Cards>
         </>
     )
 }
