@@ -37,7 +37,7 @@ export default function Paginacao() {
             {
                 Array.from(Array(paginas), (item, index) => {
 
-                    return <button value={index} onClick={(event) => { setPaginaAtual(Number(event.target.value)) }} key={index + 1}>{index + 1}</button>
+                    return <button key={index} value={index} onClick={(event) => { setPaginaAtual(Number(event.target.value)) }} key={index + 1}>{index + 1}</button>
 
                 })
             } 

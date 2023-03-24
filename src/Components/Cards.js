@@ -5,9 +5,10 @@ import CryptoJS from "crypto-js";
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
-
 import { obter_Lista_De_HQ } from '../Redux/PaginacaoSlice'
 import { envia_Dados_De_Detlahes } from '../Redux/DetalhesSlice'
+import Loader from '../Components/Loader'
+
 
 export default function Cards() {
 
@@ -18,6 +19,7 @@ export default function Cards() {
 
     const [fetch_HQ_Data, setFetch_HQ_Data] = useState([]);
     const [lista_De_HQ, setLista_De_HQ] = useState([]);
+    const [loading, setLoading] = useState(true)
 
 
 
@@ -27,7 +29,7 @@ export default function Cards() {
 
     useEffect(() => {
         async function fetchHQ() {
-
+            
             const timestamp = Number(new Date());
             const hashString = timestamp + chavePrivada + chavePublica;
             const hash = CryptoJS.MD5(hashString).toString();
@@ -63,9 +65,11 @@ export default function Cards() {
                     preco: precos
                 }
                 lista.push(obj)
+                setLoading(false)
             }
             setLista_De_HQ(lista)
             dispatch(obter_Lista_De_HQ(lista))
+
         }
         Gerar_Objeto_Produto();
 
@@ -75,6 +79,9 @@ export default function Cards() {
 
     return (
         <>
+
+            {loading ? <Loader></Loader> : <div></div>}
+
             <ContainerPaginacao>
                 <Paginacao></Paginacao>
             </ContainerPaginacao>
@@ -95,6 +102,7 @@ export default function Cards() {
 
                             <button
                                 value={item.id}
+                                key={item.id}
                                 onClick={(event) => {
                                     const idClicado = event.target.value;
                                     const hqClicada = Todas_As_HQ_Paginadas.find(item => item.id === Number(idClicado));

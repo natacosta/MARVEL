@@ -2,6 +2,7 @@ import {configureStore} from '@reduxjs/toolkit'
 import PaginacaoSlice from './PaginacaoSlice'
 import CardsSlice from './CardsSlice'
 import DetalhesSlice from './DetalhesSlice'
+import CarrinhoSlice from './CarrinhoSlice'
 
 const store = configureStore({
 
@@ -9,7 +10,8 @@ const store = configureStore({
 
         paginacao: PaginacaoSlice,
         cards : CardsSlice,
-        detalhes:DetalhesSlice
+        detalhes:DetalhesSlice,
+        carrinho:CarrinhoSlice
     }
 })
 export default store

@@ -1,10 +1,10 @@
 import style from 'styled-components';
 
 
-export const ContainerDetalhes = style.div`
+export const ContainerCarrinho = style.div`
 
 
-    margin: auto;
+    margin: 14px auto;
     background: red;
     width: 90%;
     display: flex;
@@ -46,17 +46,31 @@ export const ContainerDetalhes = style.div`
 
 `;
 
+
+
+export const ContainerCarrinhoVazio = style.div`
+
+ 
+    margin: 14px auto;
+    background: red;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden; 
+`;
+
+
 export const ContainerBotaoVoltar = style.div`
 
     margin: auto;
     background: red;
     width: 90%;
     display: flex;
-    justify-content: space-between;    
+    justify-content: start;    
 `;
 
 
-export const ImagemDetlahes = style.img`
+export const ImagemCarrinho = style.img`
 
     margin: 10px 10px 10px 10px;
 
@@ -66,12 +80,10 @@ export const ImagemDetlahes = style.img`
             display: block;
 
         }
-
     }
-
 `;
 
-export const ConatinerDetalhesParaMobile = style.section`
+export const ConatinerDetalhesParaMobileCarrinho = style.section`
 
     display: none;
     background: pink;
