@@ -1,32 +1,60 @@
 import style from 'styled-components';
 
 
-export const NavbarContainer = style.div`
+export const NavbarContainer = style.header`
 
-    background:#e2362c;  
-    
-    
+
     ul{
-        background: blue;
+        background: #ec1d24;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
         list-style: none;
         margin-top: 0px;
     }
-    h1{
-        color: white;
-        font-size: unset;
-        border: 3px solid wheat;
-        width: 7%;
-        height: 70px;
-        width: 105px;
-        text-align: center;
-        justify-content: center;
-        display: flex;
+
+    li{
+        margin:auto;
 
     }
+    input{
+        width: 717px;
+        height: 37px;
 
     }
+    a{
+        color: black;
+
+    }
+    @media (max-width: 700px) {
+        ul {
+          
+            display: grid;
+        }
+    }
+
+    
 
 `;
+export const LogoDaMarvel = style.img`
+
+    width: 162px;
+    padding: 24px;
+
+`;
+
+export const ConatienrIconeCarrinho = style.li`
+    font-size: 27px;
+
+`;
+
+
+export const ConatienrIconeCarrinhoAtivo = style.li`
+    font-size: 27px;
+    width: 70px;
+    display: flex;
+    justify-content: space-between;
+
+
+`;
+

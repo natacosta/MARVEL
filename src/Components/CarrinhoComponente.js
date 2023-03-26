@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from 'react';
-import { ContainerCarrinho, ImagemCarrinho, ConatinerDetalhesParaMobileCarrinho, ContainerBotaoVoltar, ContainerCarrinhoVazio} from '../Style/Carrinho/CarrinhoStyle'
+import { ContainerCarrinho, ImagemCarrinho, ConatinerDetalhesParaMobileCarrinho, ContainerBotaoVoltar, ContainerCarrinhoVazio } from '../Style/Carrinho/CarrinhoStyle'
 import { NavLink } from 'react-router-dom';
 
 export default function CarrinhoComponente() {
@@ -79,7 +79,7 @@ export default function CarrinhoComponente() {
             ) : (
 
                 <ContainerCarrinhoVazio>
-                    <p>o carrinho está vazio</p>
+                    <p>o carrinho está vazio.</p>
                 </ContainerCarrinhoVazio>
             )}
 

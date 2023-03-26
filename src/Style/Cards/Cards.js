@@ -2,19 +2,20 @@ import style from 'styled-components';
 
 export const CardsContainer = style.section`
 
-    background: red;
+    background: rgb(236, 29, 36);
     width: 90%;
-    margin: auto;
+    margin: 14px auto;
     display: grid;
-    justify-content: center;
+    -webkit-box-pack: center;
+    place-content: center;
     gap: 30px;
-    align-items: center;
-    grid-template: 0fr 1fr 1fr /1fr 1fr 1fr; 
-    justify-items: center;
-    align-content: center;
+    -webkit-box-align: center;
+    place-items: center;
+    grid-template: 0fr 1fr / 1fr 1fr 1fr;
     overflow: auto;
-    height: 1256px;
-
+    padding-top: 18px;
+    padding-bottom: 18px;
+    box-shadow: 1px 1px 10px 1px #606060;
 
     @media (max-width: 1221px) {
         & {
@@ -28,13 +29,22 @@ export const CardsContainer = style.section`
           grid-template-rows: 1fr ;
         }
     }
+    button{
+        width: 108px;
+        height: 35px;
+        border: none;
+        border-radius: 9px;
+        cursor: pointer;
+
+    }
+   
    
 `;
 
 export const HQS = style.article`
 
-    background: blue;
-    width: 343px;
+    background: black;
+    width: 299px;
     height: 584px;
     overflow: hidden;
     display: flex;
@@ -44,7 +54,8 @@ export const HQS = style.article`
     align-items: center;
     margin: auto;
     flex-direction: column;
-    
+    color: white;
+
     p{
         text-align: center;
  
@@ -56,13 +67,34 @@ export const ContainerPaginacao = style.div`
 
 
     margin: auto;
-    background: pink;
+    background: white;
     width: 90%;
     display: flex;
-    justify-content: end;    
+    justify-content: end;  
+
+    button{
+        width: 60px;
+        height: 25px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 10px;
+    }
     
     
-`
+    
+`;
+export const ContainerDeBotoesCards = style.div`
+
+
+    margin: auto;
+    width: 90%;
+    display: flex;
+    justify-content: space-around;    
+    
+    
+`;
+
 
 
 

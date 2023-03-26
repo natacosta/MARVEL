@@ -1,14 +1,14 @@
-import { CardsContainer, HQS, ContainerPaginacao } from '../Style/Cards/Cards';
-import Paginacao from './Paginacao';
-import axios from 'axios'
-import CryptoJS from "crypto-js";
+import { CardsContainer, HQS, ContainerPaginacao, ContainerDeBotoesCards } from '../Style/Cards/Cards';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { obter_Lista_De_HQ } from '../Redux/PaginacaoSlice'
 import { envia_Dados_De_Detlahes } from '../Redux/DetalhesSlice'
+import { envia_Dados_Para_Carrinho } from '../Redux/CarrinhoSlice'
 import Loader from '../Components/Loader'
-
+import Paginacao from './Paginacao';
+import axios from 'axios'
+import CryptoJS from "crypto-js";
 
 export default function Cards() {
 
@@ -20,6 +20,7 @@ export default function Cards() {
     const [fetch_HQ_Data, setFetch_HQ_Data] = useState([]);
     const [lista_De_HQ, setLista_De_HQ] = useState([]);
     const [loading, setLoading] = useState(true)
+    const [itemFoiAdicionado, setItemFoiAdicionado] = useState(false)
 
 
 
@@ -29,7 +30,7 @@ export default function Cards() {
 
     useEffect(() => {
         async function fetchHQ() {
-            
+
             const timestamp = Number(new Date());
             const hashString = timestamp + chavePrivada + chavePublica;
             const hash = CryptoJS.MD5(hashString).toString();
@@ -41,7 +42,6 @@ export default function Cards() {
                 console.log("Não foi possível obter a lista de HQs.", error);
             }
         }
-
         fetchHQ();
     }, []);
 
@@ -69,12 +69,12 @@ export default function Cards() {
             }
             setLista_De_HQ(lista)
             dispatch(obter_Lista_De_HQ(lista))
-
         }
         Gerar_Objeto_Produto();
 
     }, [fetch_HQ_Data]);
 
+    console.log(itemFoiAdicionado)
 
 
     return (
@@ -82,13 +82,15 @@ export default function Cards() {
 
             {loading ? <Loader></Loader> : <div></div>}
 
+
             <ContainerPaginacao>
                 <Paginacao></Paginacao>
             </ContainerPaginacao>
 
-            <CardsContainer>
+            <CardsContainer id='revistas'>
 
                 {Todas_As_HQ_Paginadas.map(item => (
+
                     <HQS>
                         <img
                             key={item.id}
@@ -97,25 +99,35 @@ export default function Cards() {
                         />
                         <p>{item.titulo}</p>
 
-                        <NavLink to='detalhes'>
-
-
+                        <ContainerDeBotoesCards>
+                            <NavLink to='detalhes'>
+                                <button
+                                    id='detalhes'
+                                    value={item.id}
+                                    key={item.id}
+                                    onClick={(event) => {
+                                        const idClicado = event.target.value;
+                                        const hqClicada = Todas_As_HQ_Paginadas.find(item => item.id === Number(idClicado));
+                                        dispatch(envia_Dados_De_Detlahes(hqClicada))
+                                    }}
+                                >
+                                    Detalhes
+                                </button>
+                            </NavLink>
                             <button
+                            
+                                id='adicionar'
                                 value={item.id}
                                 key={item.id}
                                 onClick={(event) => {
                                     const idClicado = event.target.value;
                                     const hqClicada = Todas_As_HQ_Paginadas.find(item => item.id === Number(idClicado));
-                                    dispatch(envia_Dados_De_Detlahes(hqClicada))
+                                    dispatch(envia_Dados_Para_Carrinho([hqClicada]))
                                 }}
                             >
-                                Detalhes
+                                Adicionar
                             </button>
-
-
-                        </NavLink>
-
-
+                        </ContainerDeBotoesCards>
                     </HQS>
                 ))}
             </CardsContainer>

@@ -5,7 +5,7 @@ export const ContainerDetalhes = style.div`
 
 
     margin: auto;
-    background: red;
+    background: rgb(236, 29, 36);
     width: 90%;
     display: flex;
     justify-content: space-between;
@@ -49,10 +49,19 @@ export const ContainerDetalhes = style.div`
 export const ContainerBotaoVoltar = style.div`
 
     margin: auto;
-    background: red;
+    background: white;
     width: 90%;
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;  
+    
+    button{
+        width: 144px;
+        height: 25px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 10px;
+    }  
 `;
 
 

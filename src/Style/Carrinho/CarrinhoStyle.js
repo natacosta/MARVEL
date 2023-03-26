@@ -5,7 +5,7 @@ export const ContainerCarrinho = style.div`
 
 
     margin: 14px auto;
-    background: red;
+    background: rgb(236, 29, 36);    
     width: 90%;
     display: flex;
     justify-content: space-between;
@@ -13,7 +13,6 @@ export const ContainerCarrinho = style.div`
 
     @media (max-width: 1040px) {
         & {
-            background: blue;
             display: block;
 
         }
@@ -43,7 +42,7 @@ export const ContainerCarrinho = style.div`
       padding: 10px;
       font-weight: bold;
     }
-
+   
 `;
 
 
@@ -52,21 +51,35 @@ export const ContainerCarrinhoVazio = style.div`
 
  
     margin: 14px auto;
-    background: red;
+    background: rgb(236, 29, 36);    
     width: 90%;
     display: flex;
     justify-content: space-between;
-    overflow: hidden; 
+    overflow: hidden;
+    margin: auto;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
 `;
 
 
 export const ContainerBotaoVoltar = style.div`
 
     margin: auto;
-    background: red;
+    background: white;
     width: 90%;
     display: flex;
     justify-content: start;    
+    button{
+        width: 167px;
+        height: 25px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 10px;
+    }  
 `;
 
 
@@ -86,6 +99,20 @@ export const ImagemCarrinho = style.img`
 export const ConatinerDetalhesParaMobileCarrinho = style.section`
 
     display: none;
+    text-align: center;
+
+    @media (max-width: 700px) {
+        & {
+            display: block;
+
+        }
+
+    }
+    
+`;
+export const tituloCarrinho = style.h1`
+
+    display: none;
     background: pink;
     text-align: center;
 
@@ -98,6 +125,8 @@ export const ConatinerDetalhesParaMobileCarrinho = style.section`
     }
     
 `;
+
+
 
 
 

@@ -22,7 +22,8 @@ export default function Detalhamento() {
 
     return (
         <>
-            {loading ? <Loader></Loader>: <div></div>} 
+            {loading ? <Loader></Loader>: <div></div>}
+             
             <ContainerBotaoVoltar>
                 <NavLink to="/">
                     <button>Voltar</button>
