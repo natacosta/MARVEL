@@ -18,6 +18,17 @@ export default function CarrinhoComponente() {
         }
     }, [recebe_hq]);
 
+
+    function finalizarCompra(){
+
+        if(existemProdutos){
+            alert('Compra finalizada.')
+        }
+        else{
+            alert('Não existem produtos no carrinho')
+        }
+    }
+
     return (
         <>
 
@@ -25,6 +36,9 @@ export default function CarrinhoComponente() {
                 <NavLink to="/">
                     <button>Voltar para os produtos</button>
                 </NavLink>
+                <button id="finalizarCompra" onClick={finalizarCompra}>
+                    Finalizar compra
+                </button>
             </ContainerBotaoVoltar>
 
             {existemProdutos ? (

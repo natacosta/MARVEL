@@ -1,4 +1,3 @@
-import { Containers } from "../Style/Global"
 
 export default function Container ({children}){
 

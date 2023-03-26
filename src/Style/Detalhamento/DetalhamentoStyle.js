@@ -13,7 +13,6 @@ export const ContainerDetalhes = style.div`
 
     @media (max-width: 1040px) {
         & {
-            background: blue;
             display: block;
 
         }
@@ -83,14 +82,13 @@ export const ImagemDetlahes = style.img`
 export const ConatinerDetalhesParaMobile = style.section`
 
     display: none;
-    background: pink;
-    text-align: center;
-
+    text-align: inherit;
     @media (max-width: 700px) {
         & {
             display: block;
-
+            margin-left: 28px;
         }
+        
 
     }
     

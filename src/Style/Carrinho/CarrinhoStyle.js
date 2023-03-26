@@ -71,7 +71,7 @@ export const ContainerBotaoVoltar = style.div`
     background: white;
     width: 90%;
     display: flex;
-    justify-content: start;    
+    justify-content: space-between;    
     button{
         width: 167px;
         height: 25px;
@@ -98,14 +98,15 @@ export const ImagemCarrinho = style.img`
 
 export const ConatinerDetalhesParaMobileCarrinho = style.section`
 
-    display: none;
-    text-align: center;
 
+    display: none;
+    text-align: inherit;
     @media (max-width: 700px) {
         & {
             display: block;
-
+            margin-left: 28px;
         }
+        
 
     }
     
@@ -113,7 +114,6 @@ export const ConatinerDetalhesParaMobileCarrinho = style.section`
 export const tituloCarrinho = style.h1`
 
     display: none;
-    background: pink;
     text-align: center;
 
     @media (max-width: 700px) {

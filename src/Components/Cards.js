@@ -74,8 +74,6 @@ export default function Cards() {
 
     }, [fetch_HQ_Data]);
 
-    console.log(itemFoiAdicionado)
-
 
     return (
         <>
@@ -89,7 +87,7 @@ export default function Cards() {
 
             <CardsContainer id='revistas'>
 
-                {Todas_As_HQ_Paginadas.map(item => (
+                {Todas_As_HQ_Paginadas.map((item, index) => (
 
                     <HQS>
                         <img
@@ -102,7 +100,8 @@ export default function Cards() {
                         <ContainerDeBotoesCards>
                             <NavLink to='detalhes'>
                                 <button
-                                    id='detalhes'
+                                
+                                    id={index} 
                                     value={item.id}
                                     key={item.id}
                                     onClick={(event) => {
@@ -116,7 +115,7 @@ export default function Cards() {
                             </NavLink>
                             <button
                             
-                                id='adicionar'
+                                id={item.id}
                                 value={item.id}
                                 key={item.id}
                                 onClick={(event) => {

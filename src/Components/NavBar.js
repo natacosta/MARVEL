@@ -34,8 +34,8 @@ export default function NavBar() {
 
                         {itensDoCarrinho ?
 
-                            <ConatienrIconeCarrinhoAtivo id="carrinho">
-                                <NavLink to="/carrinho">
+                            <ConatienrIconeCarrinhoAtivo >
+                                <NavLink to="/carrinho" id="carrinho">
                                     <FaCartArrowDown></FaCartArrowDown>
                                 </NavLink>
                                 {qunatidade}
